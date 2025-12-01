@@ -18,7 +18,7 @@ def clean_data() -> pd.DataFrame:
     # Connect and Read
     con = sqlite3.connect(db_path)
     df = pd.read_sql("SELECT * FROM bank_marketing", con)
-    con.close()
+    con.close() 
     
     # --- 2. Cleaning Logic (Same as before) ---
     df = df.copy()

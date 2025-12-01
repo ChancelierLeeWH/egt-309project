@@ -30,12 +30,12 @@ def split_data(df: pd.DataFrame):
     )
 
 def train_rf_model(X_train, y_train):
-    rf = RandomForestClassifier(n_estimators=300, max_depth=None, random_state=42)
+    rf = RandomForestClassifier(n_estimators=300, max_depth=None, random_state=42, class_weight="balanced")
     rf.fit(X_train, y_train)
     return rf
 
 def train_xgb_model(X_train, y_train):
-    xgb = XGBClassifier(n_estimators=200, learning_rate=0.1, max_depth=5, eval_metric="logloss")
+    xgb = XGBClassifier(n_estimators=200, learning_rate=0.1, max_depth=5, eval_metric="logloss", scale_pos_weight=8)
     xgb.fit(X_train, y_train)
     return xgb
 
