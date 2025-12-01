@@ -1,101 +1,15 @@
-# egt-309project
+• Overview of insights from EDA
+The dataset is generally clean, with only minor missing values in features such as age and previous_contact_days, and several non-informative ID-like columns were removed. The target variable, subscription_status_encoded, is highly imbalanced, with far fewer positive subscriptions, which significantly affects model performance and motivated the use of techniques like oversampling and class weighting. From the exploratory analysis, customers with higher education levels, certain job types, and those contacted via cellular tend to show higher subscription rates, while features such as housing loan, personal loan, and credit default show little relationship with the target. Numerical features like age, balance, campaign, and pdays are skewed with expected outliers, though correlations between numerical variables remain weak. A key insight from the previous campaign data shows that customers previously contacted are more likely to subscribe, which led to creating the previous_contact_flag, one of the stronger engineered features. Overall, the EDA highlights class imbalance as the main challenge and identifies meaningful predictors that guide model training.
 
-[![Powered by Kedro](https://img.shields.io/badge/powered_by-kedro-ffc900?logo=kedro)](https://kedro.org)
+• Explanation of choice of models
+We selected XGBoost, Random Forest, and MLPClassifier because they represent three different modelling families — boosting, bagging, and neural networks. This allows us to compare how different algorithms handle our imbalanced and mixed-type bank marketing dataset.
+XGBoost: high performance, strong with imbalance
+Random Forest: robust, interpretable, reliable baseline
+MLPClassifier: captures deeper non-linear interactions
 
-## Overview
+• How to run pipeline(s)
+docker build -t banking-project
+docker run -v ${PWD}/data:/app/data banking-project
 
-This is your new Kedro project, which was generated using `kedro 1.0.0`.
-
-Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
-
-## Rules and guidelines
-
-In order to get the best out of the template:
-
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a data engineering convention
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
-
-## How to install dependencies
-
-Declare any dependencies in `requirements.txt` for `pip` installation.
-
-To install them, run:
-
-```
-pip install -r requirements.txt
-```
-
-## How to run your Kedro pipeline
-
-You can run your Kedro project with:
-
-```
-kedro run
-```
-
-## How to test your Kedro project
-
-Have a look at the file `tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
-
-```
-pytest
-```
-
-You can configure the coverage threshold in your project's `pyproject.toml` file under the `[tool.coverage.report]` section.
-
-
-## Project dependencies
-
-To see and update the dependency requirements for your project use `requirements.txt`. You can install the project requirements with `pip install -r requirements.txt`.
-
-[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
-
-## How to work with Kedro and notebooks
-
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, 'session', `catalog`, and `pipelines`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r requirements.txt` you will not need to take any extra steps before you use them.
-
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
-
-```
-pip install jupyter
-```
-
-After installing Jupyter, you can start a local notebook server:
-
-```
-kedro jupyter notebook
-```
-
-### JupyterLab
-To use JupyterLab, you need to install it:
-
-```
-pip install jupyterlab
-```
-
-You can also start JupyterLab:
-
-```
-kedro jupyter lab
-```
-
-### IPython
-And if you want to run an IPython session:
-
-```
-kedro ipython
-```
-
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can use tools like [`nbstripout`](https://github.com/kynan/nbstripout). For example, you can add a hook in `.git/config` with `nbstripout --install`. This will run `nbstripout` before anything is committed to `git`.
-
-> *Note:* Your output cells will be retained locally.
-
-## Package your Kedro project
-
-[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)
+• Who does what
+Chancelier did the startup of the EDA+data cleaning and setting up of the github repositories, Marcus did the fine tuning of EDA, Docker and the models and lastly Gregory completed the Kedro, the docker and fine-tuning mlp models of the project
