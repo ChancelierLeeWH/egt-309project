@@ -5,3 +5,6 @@ kedro~=1.0.0
 pandas
 scikit-learn
 xgboost
+kedro-datasets
+pyarrow
+fastparquet
