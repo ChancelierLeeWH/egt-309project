@@ -1,4 +1,9 @@
-# Here you can define all your datasets by using simple YAML syntax.
-#
-# Documentation for this file format can be found in "The Data Catalog"
-# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+# 1. Intermediate: The Cleaned Data
+cleaned_data:
+  type: pandas.ParquetDataset
+  filepath: data/clean-data/cleaned_data.parquet
+
+# 2. Output: The Trained Model
+rf_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/rf_model.pickle

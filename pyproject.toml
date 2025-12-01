@@ -28,3 +28,6 @@ attr = "egt_309project.__version__"
 [tool.setuptools.packages.find]
 where = [ "src",]
 namespaces = false
+
+[tool.kedro_telemetry]
+project_id = "a630c57cd97c4c7eb1b644a1e9a781cb"
