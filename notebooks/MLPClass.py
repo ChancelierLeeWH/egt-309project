@@ -22,15 +22,16 @@ for col in df.columns:
         df[col] = df[col].fillna("Unknown")
         df[col] = le.fit_transform(df[col])
 
-# Split
+# Split Feature
 X = df.drop(columns=[target])
 y = df[target]
 
+# Split Data
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-# Train model
+# MLP Model
 model = MLPClassifier(
     hidden_layer_sizes=(64, 32),
     activation="relu",
